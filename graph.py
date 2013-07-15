@@ -1,5 +1,4 @@
 #Graph Implementation
-import collections
 
 class Graph(object):
     "Graph container"
@@ -14,6 +13,7 @@ class Graph(object):
         self.f=dict()
 
         self.dfsl=list()
+        self.bfsl=list()
         
     def insert(self,a,b):
         "Insert edges into graph"
@@ -64,8 +64,25 @@ class Graph(object):
         self.dfsl.append(u)
         self.f[u]=self.time
 
-    def bfs(self):
-        pass
+    def bfs(self,s):
+        q=list()
+        for u in self.nodes:
+            self.color[u]="white"
+            self.par[u]=None
+        color[s]="grey"
+        d[s]=0
+        q.append(s)
+        while q!=[]:
+            u=q.pop(0)
+            for v in self.succ(u):
+                if color[v]=="white":
+                    color[v]="grey"
+                    d[v]=d[u]+1
+                    par[v]=u
+                    q.append(v)
+            color[u]="black"
+            self.bfsl.append(u)
+        
         
         
     
