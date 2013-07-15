@@ -130,11 +130,11 @@ class UWGraph(Graph):
             self.edge[b]=dict()
         self.edge[a][b]=w
         self.edge[b][a]=w
-        self.edges_w.append([a,b,w])
+        self.edges_w.append(tuple([a,b,w]))
 
     def find(self,v):
         if self.par[v]!=v:
-            self.par[v]=self.find(par[v])
+            self.par[v]=self.find(self.par[v])
         return self.par[v]
 
     def union(self,v1,v2):
@@ -209,3 +209,5 @@ if __name__=='__main__':
         elif m==2:
             graph.bfs(graph.nodes[0])
             print "Breadth First Search:",graph.bfsl
+        elif m==3:
+            print "Minimum Spanning Tree [Edge list]:\n",graph.kruskal()
