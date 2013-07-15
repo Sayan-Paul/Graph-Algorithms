@@ -156,7 +156,7 @@ if __name__=='__main__':
             if a=='0' or b =='0' or w=='0':
                 break
             graph.insert(a,b,w)
-        print [graph.succ_w(x) for x in graph.nodes]
+        #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
 2. Breadth First Search\n\n$Graph\_ """)
