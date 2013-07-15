@@ -85,22 +85,28 @@ class Graph(object):
             self.color[u]="black"
             self.bfsl.append(u)
         
-        
-        
+class UWGraph(Graph):
+    "Undirected Unweighted Graph container"
     
 
 ## Driver code
 if __name__=='__main__':
-    graph=Graph()
-    print "Enter edges of graph [Enter 0 0 to end]"
-    while True:
-        a,b=raw_input().split()
-        if a=='0' or b =='0' :
-            break
-        graph.insert(a,b)
-##    print graph.getnodes()
-##    print [graph.succ(x) for x in graph.nodes]
-    graph.dfs()
-    print "Depth first search:",graph.dfsl
-    graph.bfs(graph.nodes[0])
-    print "Breadth first search:",graph.bfsl
+    n=input("""Enter Choice:\n1. Undirected Unweighted Graph\n2. Undirected Weighted Graph
+3. Directed Unweighted Graph\n4. Directed Weighted Graph\n\n$Graph\_ """)
+    if n==1:
+        graph=Graph()
+        print "Enter edges of graph [Enter 0 0 to end]"
+        while True:
+            a,b=raw_input().split()
+            if a=='0' or b =='0' :
+                break
+            graph.insert(a,b)
+    ##    print graph.getnodes()
+    ##    print [graph.succ(x) for x in graph.nodes]
+        m=input("Enter Choice:\n1. Depth First Search\n2. Breadth First Search\n\n$Graph\_ ")
+        if m==1:
+            graph.dfs()
+            print "Depth First Search:",graph.dfsl
+        elif m==2:
+            graph.bfs(graph.nodes[0])
+            print "Breadth First Search:",graph.bfsl
