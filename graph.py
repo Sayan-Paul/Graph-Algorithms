@@ -1,7 +1,7 @@
 #Graph Implementation
 
 class Graph(object):
-    "Graph container"
+    "Undirected Graph container"
     def __init__(self):
         self.nodes=list()
         self.edge=dict()
@@ -69,18 +69,18 @@ class Graph(object):
         for u in self.nodes:
             self.color[u]="white"
             self.par[u]=None
-        color[s]="grey"
-        d[s]=0
+        self.color[s]="grey"
+        self.d[s]=0
         q.append(s)
         while q!=[]:
             u=q.pop(0)
             for v in self.succ(u):
-                if color[v]=="white":
-                    color[v]="grey"
-                    d[v]=d[u]+1
-                    par[v]=u
+                if self.color[v]=="white":
+                    self.color[v]="grey"
+                    self.d[v]=self.d[u]+1
+                    self.par[v]=u
                     q.append(v)
-            color[u]="black"
+            self.color[u]="black"
             self.bfsl.append(u)
         
         
@@ -96,7 +96,9 @@ if __name__=='__main__':
         if a=='0' or b =='0' :
             break
         graph.insert(a,b)
-    print graph.getnodes()
-    print [graph.succ(x) for x in graph.nodes]
+##    print graph.getnodes()
+##    print [graph.succ(x) for x in graph.nodes]
     graph.dfs()
     print "Depth first search:",graph.dfsl
+    graph.bfs("3")
+    print "Breadth first search:",graph.bfsl
