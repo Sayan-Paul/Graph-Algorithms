@@ -1,7 +1,7 @@
 #Graph Implementation
 
 class Graph(object):
-    "Undirected Graph container"
+    "Undirected Unweighted Graph container"
     def __init__(self):
         self.nodes=list()
         self.edge=dict()
@@ -27,7 +27,7 @@ class Graph(object):
         self.edge[b].append(a)
         
     def succ(self,a):
-        """Returns list of succesoors of cuurent node if present in graph
+        """Returns list of successors of cuurent node if present in graph
             else returns None"""
         try:
             return self.edge[a]
@@ -86,13 +86,47 @@ class Graph(object):
             self.bfsl.append(u)
         
 class UWGraph(Graph):
-    "Undirected Unweighted Graph container"
+    "Undirected Weighted Graph container"
+
+    def succ(self,a):
+        """Returns list of successors of cuurent node if present in graph
+            else returns None"""
+        try:
+            return self.edge[a][0]
+        except:
+            return None
+
+
+    def succ_w(self,a):
+        """Returns list of successors of cuurent node if present in graph
+            else returns None"""
+        try:
+            return self.edge[a]
+        except:
+            return None
+
+    def insert(self,a,b,w):
+        "Insert edges into graph"
+        if not (a in self.nodes):
+            self.nodes.append(a)
+            self.edge[a]=[[b],[w]]
+        if not (b in self.nodes):
+            self.nodes.append(b)
+            self.edge[b]=[[a],[w]]
+        self.edge[a][0].append(b)
+        self.edge[a][1].append(w)
+        self.edge[b][0].append(a)
+        self.edge[b][1].append(w)
+
     
 
 ## Driver code
 if __name__=='__main__':
     n=input("""Enter Choice:\n1. Undirected Unweighted Graph\n2. Undirected Weighted Graph
 3. Directed Unweighted Graph\n4. Directed Weighted Graph\n\n$Graph\_ """)
+
+
+    
     if n==1:
         graph=Graph()
         print "Enter edges of graph [Enter 0 0 to end]"
@@ -104,6 +138,28 @@ if __name__=='__main__':
     ##    print graph.getnodes()
     ##    print [graph.succ(x) for x in graph.nodes]
         m=input("Enter Choice:\n1. Depth First Search\n2. Breadth First Search\n\n$Graph\_ ")
+
+        if m==1:
+            graph.dfs()
+            print "Depth First Search:",graph.dfsl
+        elif m==2:
+            graph.bfs(graph.nodes[0])
+            print "Breadth First Search:",graph.bfsl
+
+
+            
+    elif n==2:
+        graph=UWGraph()
+        print "Enter edges of graph [Enter 0 0 0 to end]"
+        while True:
+            a,b,w=raw_input().split()
+            if a=='0' or b =='0' or w=='0':
+                break
+            graph.insert(a,b,w)
+        print [graph.succ_w(x) for x in graph.nodes]
+        
+        m=input("""Enter Choice:\n1. Depth First Search
+2. Breadth First Search\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
