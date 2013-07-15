@@ -53,6 +53,9 @@ class Graph(object):
                 self.dfs_visit(u)
     def dfs_visit(self,u):
         self.time+=1
+        
+        self.dfsl.append(u)## node Discovered
+        
         self.dist=self.time
         self.color[u]="grey"
         for v in self.succ(u):
@@ -61,7 +64,6 @@ class Graph(object):
                 self.dfs_visit(v)
         self.color[u]="black"
         self.time+=1
-        self.dfsl.append(u)
         self.f[u]=self.time
 
     def bfs(self,s):
