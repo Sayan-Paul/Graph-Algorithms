@@ -102,5 +102,5 @@ if __name__=='__main__':
 ##    print [graph.succ(x) for x in graph.nodes]
     graph.dfs()
     print "Depth first search:",graph.dfsl
-    graph.bfs("3")
+    graph.bfs(graph.nodes[0])
     print "Breadth first search:",graph.bfsl
