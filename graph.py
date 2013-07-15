@@ -88,17 +88,32 @@ class Graph(object):
 class UWGraph(Graph):
     "Undirected Weighted Graph container"
 
+    def __init__(self):
+        self.nodes=list()
+        self.edge=dict()
+        
+        self.color=dict()
+        self.par=dict()
+        self.time=0
+        self.d=dict()
+        self.f=dict()
+
+        self.dfsl=list()
+        self.bfsl=list()
+        self.rank=dict()
+        self.edges_w=list()
+    
     def succ(self,a):
         """Returns list of successors of cuurent node if present in graph
             else returns None"""
         try:
-            return self.edge[a][0]
+            return self.edge[a].keys()
         except:
             return None
 
 
     def succ_w(self,a):
-        """Returns list of successors of cuurent node if present in graph
+        """Returns list of successors of cuurent node with weight if present in graph
             else returns None"""
         try:
             return self.edge[a]
@@ -109,15 +124,43 @@ class UWGraph(Graph):
         "Insert edges into graph"
         if not (a in self.nodes):
             self.nodes.append(a)
-            self.edge[a]=[[b],[w]]
+            self.edge[a]=dict()
         if not (b in self.nodes):
             self.nodes.append(b)
-            self.edge[b]=[[a],[w]]
-        self.edge[a][0].append(b)
-        self.edge[a][1].append(w)
-        self.edge[b][0].append(a)
-        self.edge[b][1].append(w)
+            self.edge[b]=dict()
+        self.edge[a][b]=w
+        self.edge[b][a]=w
+        self.edges_w.append([a,b,w])
 
+    def find(self,v):
+        if self.par[v]!=v:
+            self.par[v]=self.find(par[v])
+        return self.par[v]
+
+    def union(self,v1,v2):
+        r1=self.find(v1)
+        r2=self.find(v2)
+        if r1!=r2:
+            if self.rank[r1]>self.rank[r2]:
+                self.par[r2]=r1
+            else:
+                self.par[r1]=r2
+                if self.rank[r1]==self.rank[r2]:
+                    self.rank[r2]+=1
+    def kruskal(self):
+        rank=dict()
+        for v in self.nodes:
+            self.par[v]=v
+            self.rank[v]=0
+
+        mst=set()
+        self.edges_w.sort(key=lambda x : x[2])
+        for edge in self.edges_w:
+            v1,v2,w=edge
+            if self.find(v1)!=self.find(v2):
+                self.union(v1,v2)
+                mst.add(edge)
+        return mst
     
 
 ## Driver code
@@ -155,11 +198,11 @@ if __name__=='__main__':
             a,b,w=raw_input().split()
             if a=='0' or b =='0' or w=='0':
                 break
-            graph.insert(a,b,w)
+            graph.insert(a,b,int(w))
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n\n$Graph\_ """)
+2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
