@@ -1,5 +1,5 @@
 #Graph Implementation
-
+import collections
 
 class Graph(object):
     "Graph container"
@@ -63,13 +63,17 @@ class Graph(object):
         self.time+=1
         self.dfsl.append(u)
         self.f[u]=self.time
+
+    def bfs(self):
+        pass
+        
         
     
 
-## Driver code    
+## Driver code
 if __name__=='__main__':
     graph=Graph()
-    print "Enter edges of graph"
+    print "Enter edges of graph [Enter 0 0 to end]"
     while True:
         a,b=raw_input().split()
         if a=='0' or b =='0' :
@@ -78,4 +82,4 @@ if __name__=='__main__':
     print graph.getnodes()
     print [graph.succ(x) for x in graph.nodes]
     graph.dfs()
-    print graph.dfsl
+    print "Depth first search:",graph.dfsl
