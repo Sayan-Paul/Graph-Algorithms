@@ -155,11 +155,13 @@ class UWGraph(Graph):
         self.edges_w.append(tuple([a,b,w]))
 
     def find(self,v):
+        "Returns root of tree to which v belongs"
         if self.par[v]!=v:
             self.par[v]=self.find(self.par[v])
         return self.par[v]
 
     def union(self,v1,v2):
+        "Joins the trees to which v1 and v2 belong"
         r1=self.find(v1)
         r2=self.find(v2)
         if r1!=r2:
@@ -169,7 +171,9 @@ class UWGraph(Graph):
                 self.par[r1]=r2
                 if self.rank[r1]==self.rank[r2]:
                     self.rank[r2]+=1
+
     def kruskal(self):
+        "Kruskal's Algorithm"
         rank=dict()
         for v in self.nodes:
             self.par[v]=v
