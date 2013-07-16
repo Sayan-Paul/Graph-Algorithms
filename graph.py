@@ -206,7 +206,7 @@ class DUGraph(Graph):
             self.edge[b]=list()
         self.edge[a].append(b)
 
-class DWGraph(Graph):
+class DWGraph(UWGraph):
     "Directed Weighted Graph Container"
 
     def insert(self,a,b,w):
