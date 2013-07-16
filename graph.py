@@ -1,4 +1,5 @@
 #Graph Implementation
+#Author : Sayan Paul
 
 import heapq,collections
 
@@ -187,6 +188,38 @@ class UWGraph(Graph):
                 self.union(v1,v2)
                 mst.add(edge)
         return mst
+
+    def mst-prim(self,r):
+        "Prim's Algorithm"
+        pass
+
+class DUGraph(Graph):
+    "Directed Unweighted Graph Container"
+
+    def insert(self,a,b):
+        "Insert edges into graph"
+        if not (a in self.nodes):
+            self.nodes.append(a)
+            self.edge[a]=list()
+        if not (b in self.nodes):
+            self.nodes.append(b)
+            self.edge[b]=list()
+        self.edge[a].append(b)
+
+class DWGraph(Graph):
+    "Directed Weighted Graph Container"
+
+    def insert(self,a,b,w):
+        "Insert edges into graph"
+        if not (a in self.nodes):
+            self.nodes.append(a)
+            self.edge[a]=dict()
+        if not (b in self.nodes):
+            self.nodes.append(b)
+            self.edge[b]=dict()
+        self.edge[a][b]=w
+        self.edges_w.append(tuple([a,b,w]))
+  
     
 
 ## Driver code
@@ -219,6 +252,46 @@ if __name__=='__main__':
             
     elif n==2:
         graph=UWGraph()
+        print "Enter edges of graph [Enter 0 0 0 to end]"
+        while True:
+            a,b,w=raw_input().split()
+            if a=='0' or b =='0' or w=='0':
+                break
+            graph.insert(a,b,int(w))
+        #print [graph.succ_w(x) for x in graph.nodes]
+        
+        m=input("""Enter Choice:\n1. Depth First Search
+2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n\n$Graph\_ """)
+        if m==1:
+            graph.dfs()
+            print "Depth First Search:",graph.dfsl
+        elif m==2:
+            graph.bfs(graph.nodes[0])
+            print "Breadth First Search:",graph.bfsl
+        elif m==3:
+            print "Minimum Spanning Tree [Edge list]:\n",graph.kruskal()
+
+    elif n==3:
+        graph=DUGraph()
+        print "Enter edges of graph [Enter 0 0 to end]"
+        while True:
+            a,b=raw_input().split()
+            if a=='0' or b =='0' :
+                break
+            graph.insert(a,b)
+    ##    print graph.getnodes()
+    ##    print [graph.succ(x) for x in graph.nodes]
+        m=input("Enter Choice:\n1. Depth First Search\n2. Breadth First Search\n\n$Graph\_ ")
+
+        if m==1:
+            graph.dfs()
+            print "Depth First Search:",graph.dfsl
+        elif m==2:
+            graph.bfs(graph.nodes[0])
+            print "Breadth First Search:",graph.bfsl
+
+    elif n==4:
+        graph=DWGraph()
         print "Enter edges of graph [Enter 0 0 0 to end]"
         while True:
             a,b,w=raw_input().split()
