@@ -46,3 +46,27 @@ Psuedocode:
 9              else
 10                 label e as a back edge
 
+Kruskal's algorithm:
+======================
+
+Kruskal's algorithm is a greedy algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component).
+
+Psuedocode:
+
+KRUSKAL(G):
+1 A = Ø
+2 foreach v ? G.V:
+3   MAKE-SET(v)
+4 foreach (u, v) ordered by weight(u, v), increasing:
+5    if FIND-SET(u) ? FIND-SET(v):
+6       A = A ? {(u, v)}
+7       UNION(u, v)
+8 return A
+
+Prim's algorithm:
+======================
+
+In computer science, Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a connected weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. 
+
+Psuedocode:
+
