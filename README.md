@@ -70,3 +70,71 @@ In computer science, Prim's algorithm is a greedy algorithm that finds a minimum
 
 Psuedocode:
 
+
+    :(initializations).
+    O={1} (V(1) root of the T tree).
+    P={2,...,n}
+    For every j belonging to P :e(j):=c[e(j1)] , p(j)=1
+    ( all peaks connected to the root.By definition of the cost function:e(j)=infinite when V(j) does not connect to V(1).).
+    Choose a k for which e(k)<=e(j) for every j belonging to P.In case of tight choose the smaller one.
+    Exchange the O set with the set produced by the union of the O set and {k} . Exchange the P set with the set produced by the difference of the P set and {k} .(P<-P-{k}) If P=0 then stop.
+    For every j belonging to P compare e(j) with c[e(kj)].
+    If e(j) >c[e(kj)] exchange e(j) <-c(e(kj)).Go back to Step 1.
+
+Dijkstra's algorithm:
+======================
+
+For a given source vertex (node) in the graph, the algorithm finds the path with lowest cost (i.e. the shortest path) between that vertex and every other vertex. It can also be used for finding costs of shortest paths from a single vertex to a single destination vertex by stopping the algorithm once the shortest path to the destination vertex has been determined. For example, if the vertices of the graph represent cities and edge path costs represent driving distances between pairs of cities connected by a direct road, Dijkstra's algorithm can be used to find the shortest route between one city and all other cities.
+
+Psuedocode:
+
+ 1  function Dijkstra(Graph, source):
+ 2      for each vertex v in Graph:                                // Initializations
+ 3          dist[v] := infinity ;                                  // Unknown distance function from 
+ 4                                                                 // source to v
+ 5          previous[v] := undefined ;                             // Previous node in optimal path
+ 6      end for                                                    // from source
+ 7      
+ 8      dist[source] := 0 ;                                        // Distance from source to source
+ 9      Q := the set of all nodes in Graph ;                       // All nodes in the graph are
+10                                                                 // unoptimized - thus are in Q
+11      while Q is not empty:                                      // The main loop
+12          u := vertex in Q with smallest distance in dist[] ;    // Source node in first case
+13          remove u from Q ;
+14          if dist[u] = infinity:
+15              break ;                                            // all remaining vertices are
+16          end if                                                 // inaccessible from source
+17          
+18          for each neighbor v of u:                              // where v has not yet been 
+19                                                                 // removed from Q.
+20              alt := dist[u] + dist_between(u, v) ;
+21              if alt < dist[v]:                                  // Relax (u,v,a)
+22                  dist[v] := alt ;
+23                  previous[v] := u ;
+24                  decrease-key v in Q;                           // Reorder v in the Queue
+25              end if
+26          end for
+27      end while
+28      return dist;
+29  endfunction
+
+Floyd Warshall algorithm:
+==========================
+
+In computer science, the Floyd–Warshall algorithm (also known as Floyd's algorithm, Roy–Warshall algorithm, Roy–Floyd algorithm, or the WFI algorithm) is a graph analysis algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles, see below) and also for finding transitive closure of a relation R. A single execution of the algorithm will find the lengths (summed weights) of the shortest paths between all pairs of vertices, though it does not return details of the paths themselves.
+
+Psuedocode:
+
+let dist be a |V| × |V| array of minimum distances initialized to 8 (infinity)
+for each vertex v
+   dist[v][v] ? 0
+for each edge (u,v)
+   dist[u][v] ? w(u,v)  // the weight of the edge (u,v)
+for k from 1 to |V|
+   for i from 1 to |V|
+      for j from 1 to |V|
+         if dist[i][k] + dist[k][j] < dist[i][j] then
+            dist[i][j] ? dist[i][k] + dist[k][j]
+
+This file can be used in any program like a python module using import
+=======================================================================
