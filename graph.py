@@ -29,6 +29,15 @@ class PriorityQueue:
                 return True
         return False
 
+    def update(self,element,priorityNew):
+        l=[]
+        for priority,count,item in self.heap:
+            if item == element:
+                l.append(tuple([priorityNew,count,item]))
+            else : l.append(tuple([priority,count,item]))
+        self.heap=l
+        heapq.heapify(self.heap)
+
 class Graph(object):
     "Undirected Unweighted Graph container"
     def __init__(self):
@@ -196,24 +205,25 @@ class UWGraph(Graph):
                 mst.add(edge)
         return mst
 
-    def mst-prim(self,r):
+    def prim(self,r):
         "Prim's Algorithm"
         q=PriorityQueue()
         for v in self.nodes:
             self.key[v]=10**6               #this chosen as the upper limit of weights [Can be changed as required]
             self.par[v]=None
             if v!=r:
-                q.push(v,key[v])
+                q.push(v,self.key[v])
         self.key[r]=0
-        q.push(r,key[r])
+        q.push(r,self.key[r])
         while not q.isEmpty():
             u=q.pop()
             adj=self.succ_w(u)
             for v in adj:
                 if q.search(v) and adj[v]<self.key[v]:
                     self.par[v]=u
-                    key[v]=adj[v]
-        print list(self.par)
+                    self.key[v]=adj[v]
+                    q.update(v,self.key[v])
+        print str(self.par)
         
 
 class DUGraph(Graph):
@@ -284,7 +294,7 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n\n$Graph\_ """)
+2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n4. Prim's Minimum Spanning Tree\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
@@ -293,6 +303,9 @@ if __name__=='__main__':
             print "Breadth First Search:",graph.bfsl
         elif m==3:
             print "Minimum Spanning Tree [Edge list]:\n",graph.kruskal()
+        elif m==4:
+            print "Minimum Spanning Tree [Parent list]:\n"
+            graph.prim(graph.nodes[0])
 
     elif n==3:
         graph=DUGraph()
@@ -324,12 +337,11 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n\n$Graph\_ """)
+2. Breadth First Search\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
         elif m==2:
             graph.bfs(graph.nodes[0])
             print "Breadth First Search:",graph.bfsl
-        elif m==3:
-            print "Minimum Spanning Tree [Edge list]:\n",graph.kruskal()
+
