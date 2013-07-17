@@ -274,6 +274,30 @@ class DWGraph(UWGraph):
         print "Parent list:",str(self.par)
         print "Distance from source:",str(self.d)
         
+    def Dijkstra(self,r):
+        "Dijksta's Algorithm for single source shortest path"
+        q=PriorityQueue()
+        for v in self.nodes:
+            self.d[v]=10**6               #this chosen as the upper limit of weights [Can be changed as required]
+            self.par[v]=None
+            if v!=r:
+                q.push(v,self.d[v])
+        self.d[r]=0
+        q.push(r,self.d[r])
+        while not q.isEmpty():
+            u=q.pop()
+            if self.d[u]==10**6:
+                break
+            adj=self.succ_w(u)
+            for v in adj:
+                if self.d[v]>self.d[u]+adj[v]:
+                    self.d[v]=self.d[u]+adj[v]
+                    self.par[v]=u
+                    q.update(v,self.d[v])
+        print "Parent list:",str(self.par)
+        print "Distance from source:",str(self.d)
+            
+
 
 ## Driver code
 if __name__=='__main__':
@@ -357,7 +381,7 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n3.Bellman Ford Single Source Shortest Path\n\n$Graph\_ """)
+2. Breadth First Search\n3. Bellman Ford Single Source Shortest Path\n3. Dijkstra Single Source Shortest Path\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
@@ -367,4 +391,6 @@ if __name__=='__main__':
         elif m==3:
             c=raw_input("Enter source: ")
             graph.Bellman_Ford(c)
-
+        elif m==4:
+            c=raw_input("Enter source: ")
+            graph.Dijkstra(c)

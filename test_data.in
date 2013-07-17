@@ -1,14 +1,14 @@
 4
-S T 6
-S Y 7
-T X 5
-T Y 8
-Y Z 9
-Y X -3
-T Z -4
-Z S 2
-Z X 7
-X T -2
+S T 10
+S Y 5
+T X 1
+T Y 2
+Y T 3
+Y Z 2
+Y X 9
+Z S 7
+Z X 6
+X Z 4
 0 0 0
-3
+4
 S
