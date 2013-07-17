@@ -213,7 +213,7 @@ class UWGraph(Graph):
                 if q.search(v) and adj[v]<self.key[v]:
                     self.par[v]=u
                     key[v]=adj[v]
-        
+        print list(self.par)
         
 
 class DUGraph(Graph):
