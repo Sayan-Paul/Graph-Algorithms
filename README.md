@@ -7,7 +7,7 @@ A graph is a representation of a set of objects where some pairs of objects are 
 The edges may be directed or undirected.
 
 Breadth First Search:
-======================
+-----------------------
 
 In graph theory, breadth-first search (BFS) is a strategy for searching in a graph when search is limited to essentially two operations: (a) visit and inspect a node of a graph; (b) gain access to visit the nodes that neighbor the currently visited node. The BFS begins at a root node and inspects all the neighboring nodes. Then for each of those neighbor nodes in turn, it inspects their neighbor nodes which were unvisited, and so on. Compare BFS with the equivalent, but more memory-efficient Iterative deepening depth-first search and contrast with depth-first search.
 
@@ -29,7 +29,7 @@ Psuedocode:
 		14     return none
 
 Breadth First Search:
-======================
+----------------------
 
 Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root (selecting some node as the root in the graph case) and explores as far as possible along each branch before backtracking.
 
@@ -47,7 +47,7 @@ Psuedocode:
 		10                 label e as a back edge
 
 Kruskal's algorithm:
-======================
+----------------------
 
 Kruskal's algorithm is a greedy algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component).
 
@@ -64,7 +64,7 @@ Psuedocode:
 		8 return A
 
 Prim's algorithm:
-======================
+----------------------
 
 In computer science, Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a connected weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. 
 
@@ -82,7 +82,7 @@ Psuedocode:
     If e(j) >c[e(kj)] exchange e(j) <-c(e(kj)).Go back to Step 1.
 
 Dijkstra's algorithm:
-======================
+----------------------
 
 For a given source vertex (node) in the graph, the algorithm finds the path with lowest cost (i.e. the shortest path) between that vertex and every other vertex. It can also be used for finding costs of shortest paths from a single vertex to a single destination vertex by stopping the algorithm once the shortest path to the destination vertex has been determined. For example, if the vertices of the graph represent cities and edge path costs represent driving distances between pairs of cities connected by a direct road, Dijkstra's algorithm can be used to find the shortest route between one city and all other cities.
 
@@ -119,7 +119,7 @@ Psuedocode:
 		29  endfunction
 
 Floyd Warshall algorithm:
-==========================
+--------------------------
 
 In computer science, the Floyd–Warshall algorithm (also known as Floyd's algorithm, Roy–Warshall algorithm, Roy–Floyd algorithm, or the WFI algorithm) is a graph analysis algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles, see below) and also for finding transitive closure of a relation R. A single execution of the algorithm will find the lengths (summed weights) of the shortest paths between all pairs of vertices, though it does not return details of the paths themselves.
 
