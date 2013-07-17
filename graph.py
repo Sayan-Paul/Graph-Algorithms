@@ -234,7 +234,9 @@ class UWGraph(Graph):
                 if v==u:
                     t[v]=0
                 else:
-                    t[v]=adj[v]
+                    try:t[v]=adj[v]
+                    except : t[v]=10**7
+                    
             dis[u]=dict(t)
         for k in self.nodes:
             for i in self.nodes:
@@ -242,7 +244,7 @@ class UWGraph(Graph):
                     if dis[i][k] + dis[k][j] < dis[i][j]:
                         dis[i][j] = dis[i][k] + dis[k][j]
         print "Distance Matrix :"
-        for u in self.nodes:
+        for u in dis.keys():
             print u ,str(dis[u])
         
 
@@ -358,7 +360,8 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n4. Prim's Minimum Spanning Tree\n\n$Graph\_ """)
+2. Breadth First Search\n3. Kruskal Minimum Spanning Tree\n4. Prim's Minimum Spanning Tree\n5. Floyd Warshall Algorithm
+\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
@@ -370,6 +373,8 @@ if __name__=='__main__':
         elif m==4:
             print "Minimum Spanning Tree [Parent list]:\n"
             graph.prim(graph.nodes[0])
+        elif m==5:
+            graph.Floyd_Warshall()
 
     elif n==3:
         graph=DUGraph()
@@ -401,7 +406,7 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n3. Bellman Ford Single Source Shortest Path\n3. Dijkstra Single Source Shortest Path\n\n$Graph\_ """)
+2. Breadth First Search\n3. Bellman Ford Single Source Shortest Path\n4. Dijkstra Single Source Shortest Path\n5. Floyd Warshall Algorithm\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
@@ -414,3 +419,5 @@ if __name__=='__main__':
         elif m==4:
             c=raw_input("Enter source: ")
             graph.Dijkstra(c)
+        elif m==5:
+            graph.Floyd_Warshall()
