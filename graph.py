@@ -23,6 +23,12 @@ class PriorityQueue:
     def isEmpty(self):
         return len(self.heap) == 0
 
+    def search(self,element):
+        for priority,count,item in self.heap:
+            if item == element:
+                return True
+        return False
+
 class Graph(object):
     "Undirected Unweighted Graph container"
     def __init__(self):
@@ -125,6 +131,7 @@ class UWGraph(Graph):
         self.bfsl=list()
         self.rank=dict()
         self.edges_w=list()
+        self.key=dict()
     
     def succ(self,a):
         """Returns list of successors of cuurent node if present in graph
@@ -191,7 +198,23 @@ class UWGraph(Graph):
 
     def mst-prim(self,r):
         "Prim's Algorithm"
-        pass
+        q=PriorityQueue()
+        for v in self.nodes:
+            self.key[v]=10**6               #this chosen as the upper limit of weights [Can be changed as required]
+            self.par[v]=None
+            if v!=r:
+                q.push(v,key[v])
+        self.key[r]=0
+        q.push(r,key[r])
+        while not q.isEmpty():
+            u=q.pop()
+            adj=self.succ_w(u)
+            for v in adj:
+                if q.search(v) and adj[v]<self.key[v]:
+                    self.par[v]=u
+                    key[v]=adj[v]
+        
+        
 
 class DUGraph(Graph):
     "Directed Unweighted Graph Container"
