@@ -3,7 +3,7 @@ Graph-Algorithms
 
 Python implementation of graph structure and some common algorithms
 
-A graph is a representation of a set of objects where some pairs of objects are connected by links. The interconnected objects are represented by mathematical abstractions called vertices, and the links that connect some pairs of vertices are called edges.[1] Typically, a graph is depicted in diagrammatic form as a set of dots for the vertices, joined by lines or curves for the edges. 
+A graph is a representation of a set of objects where some pairs of objects are connected by links. The interconnected objects are represented by mathematical abstractions called vertices, and the links that connect some pairs of vertices are called edges. Typically, a graph is depicted in diagrammatic form as a set of dots for the vertices, joined by lines or curves for the edges. 
 The edges may be directed or undirected.
 
 Breadth First Search:
@@ -137,4 +137,4 @@ Psuedocode:
 					dist[i][j] ? dist[i][k] + dist[k][j]
 
 This file can be used in any program like a python module using import
-=======================================================================
+------------------------------------------------------------------------
