@@ -357,7 +357,7 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search3.Bellman Ford Single Source Shortest Path\n\n$Graph\_ """)
+2. Breadth First Search\n3.Bellman Ford Single Source Shortest Path\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
