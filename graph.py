@@ -224,6 +224,26 @@ class UWGraph(Graph):
                     self.key[v]=adj[v]
                     q.update(v,self.key[v])
         print str(self.par)
+
+    def Floyd_Warshall(self):
+        dis=dict()
+        for u in self.nodes:
+            t=dict()
+            adj=self.succ_w(u)
+            for v in self.nodes:
+                if v==u:
+                    t[v]=0
+                else:
+                    t[v]=adj[v]
+            dis[u]=dict(t)
+        for k in self.nodes:
+            for i in self.nodes:
+                for j in self.nodes:
+                    if dis[i][k] + dis[k][j] < dis[i][j]:
+                        dis[i][j] = dis[i][k] + dis[k][j]
+        print "Distance Matrix :"
+        for u in self.nodes:
+            print u ,str(dis[u])
         
 
 class DUGraph(Graph):
