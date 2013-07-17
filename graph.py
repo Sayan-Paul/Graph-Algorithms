@@ -252,8 +252,28 @@ class DWGraph(UWGraph):
             self.edge[b]=dict()
         self.edge[a][b]=w
         self.edges_w.append(tuple([a,b,w]))
-  
-    
+
+    def Bellman_Ford(self,s):
+        """This implementation takes in a graph, represented as lists of vertices and edges,
+    and fills two arrays (distance and predecessor) with shortest-path information"""
+        for v in self.nodes:
+            if v==s:
+                self.d[v]=0
+            else:
+                self.d[v]=10**7
+            self.par[v]=None  
+        for i in range(1,len(self.nodes)):
+            for u,v,w in self.edges_w:
+                if self.d[v]>self.d[u]+w:
+                    self.d[v]=self.d[u]+w
+                    self.par[v]=u
+        for u,v,w in self.edges_w:
+                if self.d[v]>self.d[u]+w:
+                    print "[ERROR] Graph contains a negative-weight cycle"
+                    return
+        print "Parent list:",str(self.par)
+        print "Distance from source:",str(self.d)
+        
 
 ## Driver code
 if __name__=='__main__':
@@ -337,11 +357,14 @@ if __name__=='__main__':
         #print [graph.succ_w(x) for x in graph.nodes]
         
         m=input("""Enter Choice:\n1. Depth First Search
-2. Breadth First Search\n\n$Graph\_ """)
+2. Breadth First Search3.Bellman Ford Single Source Shortest Path\n\n$Graph\_ """)
         if m==1:
             graph.dfs()
             print "Depth First Search:",graph.dfsl
         elif m==2:
             graph.bfs(graph.nodes[0])
             print "Breadth First Search:",graph.bfsl
+        elif m==3:
+            c=raw_input("Enter source: ")
+            graph.Bellman_Ford(c)
 
