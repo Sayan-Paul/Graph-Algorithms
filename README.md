@@ -28,7 +28,7 @@ Psuedocode:
 		13                  enqueue u onto Q
 		14     return none
 
-Breadth First Search:
+Depth First Search:
 ----------------------
 
 Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root (selecting some node as the root in the graph case) and explores as far as possible along each branch before backtracking.
@@ -54,7 +54,7 @@ Kruskal's algorithm is a greedy algorithm in graph theory that finds a minimum s
 Psuedocode:
 
 		KRUSKAL(G):
-		1 A = Ø
+		1 A = ï¿½
 		2 foreach v ? G.V:
 		3   MAKE-SET(v)
 		4 foreach (u, v) ordered by weight(u, v), increasing:
@@ -121,11 +121,11 @@ Psuedocode:
 Floyd Warshall algorithm:
 --------------------------
 
-In computer science, the Floyd–Warshall algorithm (also known as Floyd's algorithm, Roy–Warshall algorithm, Roy–Floyd algorithm, or the WFI algorithm) is a graph analysis algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles, see below) and also for finding transitive closure of a relation R. A single execution of the algorithm will find the lengths (summed weights) of the shortest paths between all pairs of vertices, though it does not return details of the paths themselves.
+In computer science, the Floydï¿½Warshall algorithm (also known as Floyd's algorithm, Royï¿½Warshall algorithm, Royï¿½Floyd algorithm, or the WFI algorithm) is a graph analysis algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles, see below) and also for finding transitive closure of a relation R. A single execution of the algorithm will find the lengths (summed weights) of the shortest paths between all pairs of vertices, though it does not return details of the paths themselves.
 
 Psuedocode:
 
-		let dist be a |V| × |V| array of minimum distances initialized to 8 (infinity)
+		let dist be a |V| ï¿½ |V| array of minimum distances initialized to 8 (infinity)
 		for each vertex v
 		   dist[v][v] ? 0
 		for each edge (u,v)
