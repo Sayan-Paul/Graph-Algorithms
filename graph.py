@@ -70,7 +70,7 @@ class Graph(object):
         try:
             return self.edge[a]
         except:
-            return None
+            return []
 
     def getnodes(self):
         "Returns list of nodes in graph"
@@ -148,7 +148,7 @@ class UWGraph(Graph):
         try:
             return self.edge[a].keys()
         except:
-            return None
+            return []
 
 
     def succ_w(self,a):
@@ -157,7 +157,7 @@ class UWGraph(Graph):
         try:
             return self.edge[a]
         except:
-            return None
+            return {}
 
     def insert(self,a,b,w):
         "Insert edges into graph"
